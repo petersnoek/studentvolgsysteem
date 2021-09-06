@@ -28,8 +28,6 @@ composer.phar
 
 ### Laravel ###
 node_modules/
-npm-debug.log
-yarn-error.log
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -44,11 +42,7 @@ public_html/storage
 public_html/hot
 
 storage/*.key
-.env
-Homestead.yaml
-Homestead.json
 /.vagrant
-.phpunit.result.cache
 
 ### PhpStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
