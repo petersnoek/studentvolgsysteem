@@ -8,6 +8,6 @@ Composer package manager \
 Important packages:  [Laravel Backpack](https://backpackforlaravel.com)
 
 ## Programmers/contributers (main): petersnoek: Peter Snoek, SJWDVC: Stefano Verhoeve
-### Programmers/contributers: Students from the study Software Develment Da Vinci College
+### Programmers/contributers: Students from the study Software Development Da Vinci College
 
 
