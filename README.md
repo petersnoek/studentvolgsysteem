@@ -10,4 +10,12 @@ Important packages:  [Laravel Backpack](https://backpackforlaravel.com)
 ## Programmers/contributers (main): petersnoek: Peter Snoek, SJWDVC: Stefano Verhoeve
 ### Programmers/contributers: Students from the study Software Development Da Vinci College
 
+# Installation
+1. clone the repo
+2. run "composer install"
+3. run "npm install"
+4. run "npm run dev"
+5. run "php artisan config:cache"
+6. run "php artisan cache:clear"
+7. run "php artisan refresh"
 
