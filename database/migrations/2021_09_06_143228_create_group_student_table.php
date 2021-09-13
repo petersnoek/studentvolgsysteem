@@ -17,8 +17,8 @@ class CreateGroupStudentTable extends Migration
             $table->id();
             $table->unsignedInteger('group_id');        // 1
             $table->unsignedInteger('student_id');      // 1
-            $table->timestamp('active_from');           // 2021-09-06 12:00:00
-            $table->timestamp('active_until');          // 2021-09-06 12:00:00
+            $table->timestamp('active_from')->nullable();           // 2021-09-06 12:00:00
+            $table->timestamp('active_until')->nullable();          // 2021-09-06 12:00:00
             $table->timestamps();
         });
     }

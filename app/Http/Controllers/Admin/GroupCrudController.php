@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StudentRequest;
+use App\Http\Requests\GroupRequest;
+use App\Models\Group;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class StudentCrudController
+ * Class GroupCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class StudentCrudController extends CrudController
+class GroupCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +27,21 @@ class StudentCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Student::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/student');
-        CRUD::setEntityNameStrings('student', 'students');
+        CRUD::setModel(\App\Models\Group::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/group');
+        CRUD::setEntityNameStrings('group', 'groups');
+
+        $groups = Group::select('code')->distinct()->get();
+        $groups->isEmpty() ? '' :
+        $this->crud->addFilter([
+            'name'  => 'Classcode',
+            'type'  => 'dropdown',
+            'label' => 'Classcode'
+        ], [
+            $groups
+        ], function($value) { // if the filter is active
+            $this->crud->addClause('where', 'code', $value);
+        });
     }
 
     /**
@@ -39,12 +52,10 @@ class StudentCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::column('code');
         CRUD::column('created_at');
-        CRUD::column('firstname');
+        CRUD::column('description');
         CRUD::column('id');
-        CRUD::column('lastname');
-        CRUD::column('studentnumber');
-        CRUD::column('suffix');
         CRUD::column('updated_at');
 
         /**
@@ -62,25 +73,25 @@ class StudentCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(StudentRequest::class);
+        CRUD::setValidation(GroupRequest::class);
 
+        CRUD::field('code');
         //CRUD::field('created_at');
-        CRUD::field('firstname');
+        CRUD::field('description');
         //CRUD::field('id');
-        CRUD::field('lastname');
-        CRUD::field('studentnumber');
-        CRUD::field('suffix');
         //CRUD::field('updated_at');
+
         $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-            'label' => "Groups",
+            'label' => "Students",
             'type' => 'select2_multiple',
-            'name' => 'groups', // the method that defines the relationship in your Model
-            'entity' => 'groups', // the method that defines the relationship in your Model
-            'attribute' => 'code', // foreign key attribute that is shown to user
-            'model' => "App\Models\Group", // foreign key model
+            'name' => 'students', // the method that defines the relationship in your Model
+            'entity' => 'students', // the method that defines the relationship in your Model
+            'attribute' => 'firstname', // foreign key attribute that is shown to user
+            'model' => "App\Models\Student", // foreign key model
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
             'select_all' => true,
         ]);
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -98,27 +109,5 @@ class StudentCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-    protected function setupShowOperation(){
-        CRUD::column('id');
-        CRUD::column('studentnumber');
-        CRUD::column('firstname');
-        CRUD::column('suffix');
-        CRUD::column('lastname');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
-        $this->crud->addColumn(
-            [
-                'label' => "Groups",
-                'name' => 'groups', // the method that defines the relationship in your Model
-                'type' => 'model_function',
-                'function_name' => 'getGroupSlugs',
-//                'entity' => 'concepts', // the method that defines the relationship in your Model
-//                'attribute' => 'name', // foreign key attribute that is shown to user
-//                'model' => "App\Models\Concept", // foreign key model
-//                'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-            ]);
     }
 }
