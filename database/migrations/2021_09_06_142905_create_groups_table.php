@@ -17,6 +17,7 @@ class CreateGroupsTable extends Migration
             $table->id()->autoIncrement();
             $table->string('code');         // LPIAO19A1
             $table->string('description');  // Applicatieontwikkelaar 25187 BOL4
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

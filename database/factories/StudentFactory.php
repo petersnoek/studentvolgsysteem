@@ -33,7 +33,7 @@ class StudentFactory extends Factory
 
             //'created_by' => User::all()->random()->id,
             'created_at' => Carbon::now(),
-
+            'updated_at' => null,
         ];
     }
 }

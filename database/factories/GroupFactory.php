@@ -24,7 +24,7 @@ class GroupFactory extends Factory
     {
         $lo = ['MB', 'LP'];
         $opl = ['IAO', 'TBO'];
-        $jaar = ['13', '14', '15', '16', '16', '16', '17', '17', '17', '18', '18', '18'];
+        $jaar = ['13', '14', '15', '16', '16', '16', '17', '17', '17', '18', '18', '18', '19', '19', '19', '20', '20', '20', '21', '21', '21'];
         $soort = ['A', 'B', 'M', 'R'];
 
         $jaar_select = $jaar[array_rand($jaar,1)];
@@ -39,7 +39,8 @@ class GroupFactory extends Factory
                 $jaar_select .
                 $soort_select .
                 $volgnr_select,
-            'description' => 'Applicatieontwikkelaar 25187 BOL4',
+            'description' => ( ($jaar_select == '20' || $jaar_select == '21') ? 'Software developer' : 'Applicatieontwikkelaar') . ' 25187 BOL4',
+            'user_id' => User::all()->first()->id,
             'created_at' => Carbon::now(),
         ];
 
