@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
                 'email' => 'psnoek@davinci.nl',
                 'email_verified_at' => $now,
                 'password' => bcrypt(env("NEW_ADMIN_DEFAULT_PASS")),
+                'role' => 'admin',
                 'created_at' => $now
             ]);
             $this->command->info("- seeded user Peter Snoek (psnoek@davinci.nl) with password '*******'");
@@ -33,10 +34,20 @@ class UserSeeder extends Seeder
                 'email' => 'sverhoeve@davinci.nl',
                 'email_verified_at' => $now,
                 'password' => bcrypt(env("NEW_ADMIN_DEFAULT_PASS")),
+                'role' => 'admin',
                 'created_at' => $now
             ]);
             $this->command->info("- seeded user Stefano Verhoeve (sverhoeve@davinci.nl) with password '*******'");
 
+            DB::table('users')->insert([
+                'name' => 'Demo Docent',
+                'email' => 'docent@davinci.nl',
+                'email_verified_at' => $now,
+                'password' => bcrypt(env("NEW_USER_DEFAULT_PASS")),
+                'role' => 'teacher',
+                'created_at' => $now
+            ]);
+            $this->command->info("- seeded user Demo Docent (docent@davinci.nl) with password '*******'");
 
         }
     }
