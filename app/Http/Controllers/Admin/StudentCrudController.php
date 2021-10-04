@@ -101,13 +101,13 @@ class StudentCrudController extends CrudController
     }
 
     protected function setupShowOperation(){
-        CRUD::column('id');
+//        CRUD::column('id');
         CRUD::column('studentnumber');
         CRUD::column('firstname');
         CRUD::column('suffix');
         CRUD::column('lastname');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+//        CRUD::column('created_at');
+//        CRUD::column('updated_at');
 
         $this->crud->addColumn(
             [

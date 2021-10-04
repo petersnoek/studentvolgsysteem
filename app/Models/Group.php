@@ -27,4 +27,16 @@ class Group extends Model
         }
     }
 
+    public function getStudentSlugs(){
+        if($this->students->isNotEmpty()){
+            $slugs = array();
+            foreach($this->students as $student){
+                array_push($slugs, '<a href="' . $student->slug("show").'">'.$student->studentnumber.' ('.$student->getDisplayname() .')</a>');
+            }
+            return implode(', ', $slugs);
+        }
+        else{
+            return '-';
+        }
+    }
 }

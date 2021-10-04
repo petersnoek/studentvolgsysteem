@@ -39,4 +39,8 @@ class Student extends Model
             return url('/');
         }
     }
+
+    public function getDisplayname(){
+        return collect([$this->firstname, $this->suffix, $this->lastname])->join(' ');
+    }
 }
