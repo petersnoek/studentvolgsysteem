@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -44,5 +46,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function groups(){
         return $this->hasMany(Group::class);
+    }
+
+    public function Role() {
+        return $this->belongsTo(Role::class);
     }
 }

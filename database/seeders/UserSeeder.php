@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $now = Carbon::now();
+
         if(env('NEW_ADMIN_DEFAULT_PASS')==null | env('NEW_USER_DEFAULT_PASS')==null) {
             $this->command->error('Cant seed users. Please add NEW_ADMIN_DEFAULT_PASS and NEW_USER_DEFAULT_PASS to .env file.');
         } else {
@@ -24,8 +26,8 @@ class UserSeeder extends Seeder
                 'email' => 'psnoek@davinci.nl',
                 'email_verified_at' => $now,
                 'password' => bcrypt(env("NEW_ADMIN_DEFAULT_PASS")),
-                'role' => 'admin',
-                'created_at' => $now
+                'role_id' => 1,
+                'created_at' => $now,
             ]);
             $this->command->info("- seeded user Peter Snoek (psnoek@davinci.nl) with password '*******'");
 
@@ -34,8 +36,8 @@ class UserSeeder extends Seeder
                 'email' => 'sverhoeve@davinci.nl',
                 'email_verified_at' => $now,
                 'password' => bcrypt(env("NEW_ADMIN_DEFAULT_PASS")),
-                'role' => 'admin',
-                'created_at' => $now
+                'role_id' => 1,
+                'created_at' => $now,
             ]);
             $this->command->info("- seeded user Stefano Verhoeve (sverhoeve@davinci.nl) with password '*******'");
 
@@ -44,8 +46,8 @@ class UserSeeder extends Seeder
                 'email' => 'docent@davinci.nl',
                 'email_verified_at' => $now,
                 'password' => bcrypt(env("NEW_USER_DEFAULT_PASS")),
-                'role' => 'teacher',
-                'created_at' => $now
+                'role_id' => 2,
+                'created_at' => $now,
             ]);
             $this->command->info("- seeded user Demo Docent (docent@davinci.nl) with password '*******'");
 
