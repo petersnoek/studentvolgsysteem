@@ -11,6 +11,8 @@
 {{--@endphp--}}
 
 @section('content')
+{{--    {{dd(Auth::user())}}--}}
+
     <p>Hallo</p>
 {{--    {{$ownedGroups}}--}}
 @endsection

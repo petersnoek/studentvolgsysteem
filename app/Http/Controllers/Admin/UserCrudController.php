@@ -89,6 +89,16 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        CRUD::setValidation(UserRequest::class);
+
+        CRUD::field('name');
+        CRUD::field('email');
+//        CRUD::field('password')->type('password');
+
+        $this->crud->addField([
+            'label' => "Role",
+            'name' => 'Role', // the method that defines the relationship in your Model
+        ]);
+
     }
 }

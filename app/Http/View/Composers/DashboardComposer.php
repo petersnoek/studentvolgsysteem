@@ -12,7 +12,9 @@ class DashboardComposer
     public function __construct()
     {
         // Dependencies automatically resolved by service container...
-        $this->ownedGroups = Auth::user()->groups;
+        // TODO: Auth::user (laravel) is not the same as a backpack authenticated user. Once we login to the admin dashboard,
+        // we are logged in as a backpack user. Auth::user() is then null.
+        $this->ownedGroups = backpack_auth()->user()->groups;
     }
 
     public function compose(View $view)
