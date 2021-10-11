@@ -16,6 +16,10 @@ class Group extends Model
         return $this->belongsToMany(Student::class);
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function slug($action){
         try {
             $reflection = new ReflectionClass($this);

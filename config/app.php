@@ -174,6 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        //own adminserviceprovider (for view composers)
+        App\Providers\AdminServiceProvider::class,
+
 
     ],
 

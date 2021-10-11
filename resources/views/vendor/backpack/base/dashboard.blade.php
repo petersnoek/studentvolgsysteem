@@ -11,5 +11,6 @@
 {{--@endphp--}}
 
 @section('content')
-    <p></p>
+    <p>Hallo</p>
+{{--    {{$ownedGroups}}--}}
 @endsection
