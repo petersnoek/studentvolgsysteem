@@ -39,13 +39,12 @@ class StudentCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('created_at');
-        CRUD::column('firstname');
-        CRUD::column('id');
-        CRUD::column('lastname');
-        CRUD::column('studentnumber');
-        CRUD::column('suffix');
-        CRUD::column('updated_at');
+        CRUD::addButtonFromView('top', 'AddColumn', 'AddColumnButton', 'end');
+
+        $custom_fields = ['created_at', 'firstname', 'new'];
+        foreach($custom_fields as $column){
+            CRUD::column($column);
+        }
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

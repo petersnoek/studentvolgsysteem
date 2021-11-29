@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             StudentSeeder::class,
             GroupUserSeeder::class,
+            ColumnTypeSeeder::class,
+            CustomColumnSeeder::class,
         ]);
     }
 }

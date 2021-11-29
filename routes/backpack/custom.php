@@ -18,4 +18,7 @@ Route::group([
     Route::crud('group', 'GroupCrudController');
     Route::crud('user', 'UserCrudController');
     Route::crud('role', 'RoleCrudController');
+
+    //Custom routes used for custom buttons
+//    Route::get('user/{id}/moderate', 'UserCrudController@moderate');
 }); // this should be the absolute last line of this file
