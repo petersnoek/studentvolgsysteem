@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Student;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -19,6 +20,8 @@ class StudentCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    private $custom_fields;     # collection of fieldnames
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -29,6 +32,8 @@ class StudentCrudController extends CrudController
         CRUD::setModel(\App\Models\Student::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/student');
         CRUD::setEntityNameStrings('student', 'students');
+
+        $this->custom_fields = Student::GetCustomFieldNames();
     }
 
     /**
@@ -41,9 +46,13 @@ class StudentCrudController extends CrudController
     {
         CRUD::addButtonFromView('top', 'AddColumn', 'AddColumnButton', 'end');
 
-        $custom_fields = ['created_at', 'firstname', 'new'];
-        foreach($custom_fields as $column){
+        $default_columns = ['studentnumber', 'firstname', 'suffix', 'lastname'];
+        foreach($default_columns as $column) {
             CRUD::column($column);
+        }
+
+        foreach($this->custom_fields as $column){
+            CRUD::column($column->name);
         }
 
         /**
@@ -105,6 +114,7 @@ class StudentCrudController extends CrudController
         CRUD::column('firstname');
         CRUD::column('suffix');
         CRUD::column('lastname');
+
 //        CRUD::column('created_at');
 //        CRUD::column('updated_at');
 

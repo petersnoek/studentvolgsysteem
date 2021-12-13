@@ -31,7 +31,7 @@ class StudentSeeder extends Seeder
                 //$student->created_by = $randomUser;
                 //$student->groups()->attach($randomGroup, ['created_at' => Carbon::now()]);
 
-                $this->command->info('- seeded student: ' . $student->firstname . " " . $student->suffix . " " . $student->lastname . " (" . $student->studentnummer . ")");
+                $this->command->info('- seeded student: ' . $student->getDisplayname() . " (" . $student->studentnumber . ")");
             });
             $this->command->info('~ seeded ' . $amount . ' Students, each belonging to 1 random group');
         }

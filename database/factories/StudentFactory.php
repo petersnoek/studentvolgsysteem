@@ -24,7 +24,7 @@ class StudentFactory extends Factory
     {
         $tv = ['', '', '', '', 'van der', 'de', 'van de'];
         $count = Student::all()->count();
-        $ovnr = ( $count == 0 ? "99" . $this->faker->unique()->randomNumber(6, true) : Student::max('student_code')+1);
+        $ovnr = ( $count == 0 ? "99" . $this->faker->unique()->randomNumber(6, true) : Student::max('studentnumber')+1);
         return [
             'studentnumber' => $ovnr,                       // 99000001
             'firstname' => $this->faker->firstName,         // Peter

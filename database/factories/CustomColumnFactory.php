@@ -23,6 +23,7 @@ class CustomColumnFactory extends Factory
     public function definition()
     {
         return [
+            'model' => 'student',
             'name' => $this->faker->word,
             'column_type_id' => ColumnType::first()->id,
         ];

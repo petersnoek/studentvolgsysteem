@@ -4,13 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ExtendableModel;
 use ReflectionClass;
 
-class Student extends Model
+class Student extends ExtendableModel
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
     protected $guarded = [];
+
+//    public function __construct(array $attributes = [])
+//    {
+//        parent::__construct($attributes);
+//    }
 
     public function groups(){
         return $this->belongsToMany(Group::class);
